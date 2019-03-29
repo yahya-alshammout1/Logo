@@ -7,6 +7,10 @@
     <title>Document</title>
 </head>
 <body>
+    <div>Posty</div>
+    <div>
+        <a href="{{ url_for('post_add') }}">New</a>
+    </div>
     <div>
         {% for post in posts %}
         <img src="{{post.photo_url}}">
