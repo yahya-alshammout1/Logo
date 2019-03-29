@@ -9,8 +9,7 @@ posts = []
 
 class PostStore:
     def get_all(self): 
-        for post in posts:
-            return post
+        return posts
 
     def add(self, post):
         self.post = post
