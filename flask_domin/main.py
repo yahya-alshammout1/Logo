@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template,request,redirect,url_for
 from facebook import Post, PostStore
 app = Flask(__name__)
 dummy_posts = [
@@ -15,7 +15,21 @@ dummy_posts = [
 post_store = PostStore()
 post_store.add(dummy_posts[0])
 post_store.add(dummy_posts[1])
-@app.route('/h')
+app.current_id = 3
+
+@app.route('/')
+@app.route('/index')
 def home():
     return render_template('index.html',posts=post_store.get_all())
+@app.route('/post/add',methods=['Get', 'Post'])
+def post_add():
+    if request.method=='Post':
+        new_post = Post(id=app.current_id, photo_url=request.form['photo_url'],
+                        name=request.form['name'],
+                        body=request.form['body'])
+        post_store.add(new_post)
+        app.current_id += 1
+        return redirect(url_for('home'))
+    elif request.method=='Get':
+        return render_template('post_add.html')
 app.run()
