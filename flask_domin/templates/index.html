@@ -16,6 +16,9 @@
         <img src="{{post.photo_url}}">
         <div>{{post.name}}</div>
         <div>{{post.body}}</div>
+        <div>
+            <a href="{{ url_for('post_delete', id=post.id) }}">Delete</a>
+        </div>
         {% endfor %}
     </div>
 </body>
