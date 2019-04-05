@@ -21,15 +21,15 @@ app.current_id = 3
 @app.route('/index')
 def home():
     return render_template('index.html',posts=post_store.get_all())
-@app.route('/post/add',methods=['Get', 'Post'])
+@app.route('/post/add',methods=['GET', 'POST'])
 def post_add():
-    if request.method=='Post':
+    if request.method=='POST':
         new_post = Post(id=app.current_id, photo_url=request.form['photo_url'],
                         name=request.form['name'],
                         body=request.form['body'])
         post_store.add(new_post)
         app.current_id += 1
         return redirect(url_for('home'))
-    elif request.method=='Get':
+    elif request.method=='GET':
         return render_template('post_add.html')
 app.run()
