@@ -20,7 +20,7 @@ class PostStore:
         result = None
         self.id = id 
         for post in posts:
-            if post[0] == id:
+            if post.id == id:
                 result = post
                 break
         return result
