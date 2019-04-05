@@ -32,4 +32,8 @@ def post_add():
         return redirect(url_for('home'))
     elif request.method=='Get':
         return render_template('post_add.html')
+@app.route('/posts/delete/<int:id>')
+def post_delete(id):
+        post_store.delete(id)
+        return redirect(url_for('home'))
 app.run()
